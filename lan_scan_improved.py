@@ -23,16 +23,8 @@ def scan_port (ip,port) :
                 logging.info ("port %s is open for IP %s" % (port,ip))
                 open_port_dict [ip].append(port)
     logging.debug (" open port list %s , remove port %s" %(open_port_dict[ip], port))
-    #open_port_dict[ip].remove(port)
-    #return 0
 
 def scan_port_open(ip,port_list=common_port) :
-    #open_port_list = []
-    #for port in port_list :
-    #    logging.info ("scanning port %s for ip %s " % (ip,port))
-    #    return_value = scan_port (ip, port)        
-    #    if return_value == 1 :
-    #        open_port_list.append(port)
     threads = []
     open_port_dict [ip] = [] 
     for port in port_list:
@@ -43,7 +35,6 @@ def scan_port_open(ip,port_list=common_port) :
         t.join()
 
     logging.info (" list of port open %s for ip %s " % (open_port_dict[ip],ip))
-    #open_port_dict [ip] = open_port_list
 
 def scan_oui(mac) :
     mac_list=mac.split(":")
@@ -64,17 +55,6 @@ def scan_oui(mac) :
 ########## main ###################
 
 ##### Enter you network and interface here #######
-
-#@click.command()
-#@click.version_option()
-#@click.option('-n', '--network_scan',
-#              help='set network 192.168.1.0/24)')
-#@click.option('-i','--interface_scan', default='wlan0',
-#              help='set interface wlan0') 
-
-
-#print (network_scan)
-#print (interface_scan)
 network_scan="192.168.1.0/24"
 interface_scan="wlan0"
 ############################################
