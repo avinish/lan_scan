@@ -25,3 +25,9 @@ So please use python3 module to run this script.
 
 User should have root privilege to run this script.
 Scapy tool require root previlige to run.
+
+Added Lan scan improved which fetched faster result and in a neat matter.
+Used multithreading in lan_scan_improved.py
+
+Based number of host, User will get faster result.
+Also add pre-cooked result in first iteration and in second iteration there is complete result
