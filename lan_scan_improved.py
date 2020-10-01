@@ -3,7 +3,8 @@ from scapy.sendrecv import sr
 from scapy.layers.inet import IP,TCP,ICMP
 import logging
 from prettytable import PrettyTable
-import threading,click
+import threading
+import re,psutil
 
 common_port = [21,22,23,25,53,67,68,69,80,123,161,162,389,443,3389]
 
@@ -55,8 +56,23 @@ def scan_oui(mac) :
 ########## main ###################
 
 ##### Enter you network and interface here #######
-network_scan="192.168.1.0/24"
-interface_scan="wlan0"
+#network_scan="192.168.1.0/24"
+#interface_scan="Broadcom 802.11n Network Adapter"
+#interface_scan="Wi-Fi"
+count = 1
+print ("Select interface")
+interface_list = []
+
+for intIf in psutil.net_if_addrs().keys() :
+    print (count,intIf)
+    interface_list.append(intIf)
+    count += 1
+
+choice = int(input("Enter Choice here: "))
+interface_scan=interface_list[choice - 1]
+print ("Choice is ", interface_scan)
+
+network_scan=input("Enter network need to scan (For ex 192.168.1.0/24) : ")
 ############################################
 
 ans, unans=scapy.layers.l2.arping (network_scan,iface=interface_scan,timeout=5,verbose=False)
